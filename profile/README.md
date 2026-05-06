@@ -27,8 +27,7 @@ A single `kubectl apply` of an `FLCluster` manifest deploys the entire federated
 
 ---
 
-## Architecture
-┌─────────────────────────────────────────────────────────┐
+## Architecture┌─────────────────────────────────────────────────────────┐
 │                     MLOps Layer                         │
 │   ┌─────────────────────┐   ┌────────────────────────┐  │
 │   │  Kubeflow Dashboard │   │        MLflow          │  │
