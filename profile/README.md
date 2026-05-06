@@ -27,37 +27,38 @@ A single `kubectl apply` of an `FLCluster` manifest deploys the entire federated
 
 ---
 
-## Architecture┌─────────────────────────────────────────────────────────┐
+## Architecture
+┌─────────────────────────────────────────────────────────┐
 │                     MLOps Layer                         │
 │   ┌─────────────────────┐   ┌────────────────────────┐  │
-│   │  Kubeflow Dashboard │   │        MLflow          │  │
-│   │  Pipeline UI &      │   │  Model versioning &    │  │
-│   │  round monitoring   │   │  experiment tracking   │  │
+│   │  Kubeflow Dashboard  │   │        MLflow          │  │
+│   │  Pipeline UI &       │   │  Model versioning &    │  │
+│   │  round monitoring    │   │  experiment tracking   │  │
 │   └─────────────────────┘   └────────────────────────┘  │
 └─────────────────────────────────────────────────────────┘
 │
 ▼
 ┌─────────────────────────────────────────────────────────┐
 │                  Orchestration Layer                    │
-│  ┌─────────────┐  ┌──────────────────┐  ┌───────────┐   │
-│  │    kopf     │  │Kubeflow Pipeline │  │  FastAPI  │   │
-│  │  Operator   │  │Training round DAG│  │Aggregator │   │
-│  │ FLCluster   │  │Fan-out / fan-in  │  │FedAvg +   │   │
-│  │ CRD mgmt    │  │Model broadcast   │  │SMPC       │   │
-│  └─────────────┘  └──────────────────┘  └───────────┘   │
+│  ┌─────────────┐  ┌──────────────────┐  ┌───────────┐  │
+│  │    kopf     │  │Kubeflow Pipeline  │  │  FastAPI  │  │
+│  │  Operator   │  │Training round DAG │  │Aggregator │  │
+│  │ FLCluster   │  │Fan-out / fan-in   │  │FedAvg +   │  │
+│  │ CRD mgmt    │  │Model broadcast    │  │SMPC       │  │
+│  └─────────────┘  └──────────────────┘  └───────────┘  │
 └─────────────────────────────────────────────────────────┘
 │
 (SMPC-encrypted updates only)
 ▼
 ┌─────────────────────────────────────────────────────────┐
 │            Edge Layer — Hospital Nodes (K3s)            │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────┐   │
-│  │Hospital 1│  │Hospital 2│  │Hospital 3│  │  ...   │   │
-│  │ PySyft   │  │ PySyft   │  │ PySyft   │  │ PySyft │   │
-│  │ client   │  │ client   │  │ client   │  │ client │   │
-│  │📁 local  │  │📁 local │  │📁 local  │  │📁local│   │
-│  │  data    │  │  data    │  │  data    │  │  data  │   │
-│  └──────────┘  └──────────┘  └──────────┘  └────────┘   │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────┐  │
+│  │Hospital 1│  │Hospital 2│  │Hospital 3│  │  ...   │  │
+│  │ PySyft   │  │ PySyft   │  │ PySyft   │  │ PySyft │  │
+│  │ client   │  │ client   │  │ client   │  │ client │  │
+│  │📁 local  │  │📁 local  │  │📁 local  │  │📁local │  │
+│  │  data    │  │  data    │  │  data    │  │  data  │  │
+│  └──────────┘  └──────────┘  └──────────┘  └────────┘  │
 └─────────────────────────────────────────────────────────┘
 ---
 
