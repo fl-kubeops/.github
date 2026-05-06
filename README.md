@@ -117,7 +117,7 @@ A single `kubectl apply` of an `FLCluster` manifest deploys the entire federated
 | Wajeeh ur Rehman | Infrastructure · Kubeflow Pipeline | [@wajeeh](https://github.com/wajeeh417) |
 | M. Hammad | Testing · Dataset Simulation | [@hammad](https://github.com/l1f23bscs0204) |
 
-**Advisor:** Mr. Zulkifl Hasan
+**Advisor:** Dr. Saira Gillani
 **Institution:** University of Central Punjab, Faculty of IT & CS
 **Program:** BSCS Final Year Project — Spring 2026
 
